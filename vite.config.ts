@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // const modeIndex = process.argv.indexOf('--mode')
 // const mode = modeIndex !== -1 ? process.argv[modeIndex + 1] : 'dist'
@@ -8,7 +9,20 @@ import path from 'path'
 export default defineConfig(({ command, mode }) => {
   console.log('---',command)
   return {
-    plugins: [react()],
+    plugins: [react({
+      babel: {
+        plugins: command === 'build' ? [
+          ['babel-plugin-import', { libraryName: 'antd', libraryDirectory: 'es', style: false }],
+        ] : [],
+      },
+    }),
+    visualizer({
+      open: true,
+      filename: 'dist/stats.html',
+      gzipSize: true,
+      brotliSize: true
+
+    })],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -55,7 +69,7 @@ export default defineConfig(({ command, mode }) => {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'antd-vendor': ['antd'],
-          'utils': ['axios', 'zustand'], // 'dayjs', 'lodash-es'
+          'utils': ['axios', 'zustand'],
           'echarts': ['echarts'],
           'user-order': ['src/pages/User.tsx', 'src/pages/Order.tsx'],
         }
