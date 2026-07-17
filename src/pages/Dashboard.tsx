@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as echarts from 'echarts';
 import { getTopics } from '@/api/topic';
 import type { Topic } from '@/types';
+import './dashboard.less';
 
 export default function Dashboard() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -167,68 +168,66 @@ export default function Dashboard() {
   }, [topics]);
 
   return (
-    <div>
-      <h2 style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 24 }}>
-        仪表盘
-      </h2>
-      <Row gutter={16} style={{ marginBottom: 24 }}>
-        <Col span={6}>
-          <Card>
-            <Statistic
-              title="用户总数"
-              value={8848}
-              prefix={<UserOutlined />}
-              suffix="人"
-              valueStyle={{ color: '#1890ff' }}
-            />
-          </Card>
-        </Col>
-        <Col span={6}>
-          <Card>
-            <Statistic
-              title="订单总数"
-              value={12345}
-              prefix={<ShoppingCartOutlined />}
-              suffix="单"
-              valueStyle={{ color: '#52c41a' }}
-            />
-          </Card>
-        </Col>
-        <Col span={6}>
-          <Card>
-            <Statistic
-              title="话题总数"
-              value={topicCount}
-              prefix={<MessageOutlined />}
-              suffix="条"
-              valueStyle={{ color: '#faad14' }}
-            />
-          </Card>
-        </Col>
-        <Col span={6}>
-          <Card>
-            <Statistic
-              title="增长率"
-              value={12.5}
-              prefix={<ArrowUpOutlined />}
-              suffix="%"
-              valueStyle={{ color: '#52c41a' }}
-            />
-          </Card>
-        </Col>
-      </Row>
-      <Row gutter={16}>
-        <Col span={16}>
-          <Card title="数据统计" style={{ height: 400 }}>
-            <div ref={chartRef} style={{ width: '100%', height: '320px' }} />
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="话题分类" style={{ height: 400 }}>
-            <div ref={pieChartRef} style={{ width: '100%', height: '320px' }} />
-          </Card>
-        </Col>
-      </Row>
-    </div>
+      <div>
+          <h2 className="h2Tile">仪表盘</h2>
+          <Row gutter={16} style={{ marginBottom: 24 }}>
+              <Col span={6}>
+                  <Card>
+                      <Statistic
+                          title="用户总数"
+                          value={8848}
+                          prefix={<UserOutlined />}
+                          suffix="人"
+                          valueStyle={{ color: '#1890ff' }}
+                      />
+                  </Card>
+              </Col>
+              <Col span={6}>
+                  <Card>
+                      <Statistic
+                          title="订单总数"
+                          value={12345}
+                          prefix={<ShoppingCartOutlined />}
+                          suffix="单"
+                          valueStyle={{ color: '#52c41a' }}
+                      />
+                  </Card>
+              </Col>
+              <Col span={6}>
+                  <Card>
+                      <Statistic
+                          title="话题总数"
+                          value={topicCount}
+                          prefix={<MessageOutlined />}
+                          suffix="条"
+                          valueStyle={{ color: '#faad14' }}
+                      />
+                  </Card>
+              </Col>
+              <Col span={6}>
+                  <Card>
+                      <Statistic
+                          title="增长率"
+                          value={12.5}
+                          prefix={<ArrowUpOutlined />}
+                          suffix="%"
+                          valueStyle={{ color: '#52c41a' }}
+                      />
+                  </Card>
+              </Col>
+          </Row>
+          <Row gutter={16}>
+              <Col span={16}>
+                  <Card title="数据统计" style={{ height: 400 }}>
+                      <div ref={chartRef} style={{ width: '100%', height: '320px' }} />
+                  </Card>
+              </Col>
+              <Col span={8}>
+                  <Card title="话题分类" style={{ height: 400 }}>
+                      <div ref={pieChartRef} style={{ width: '100%', height: '320px' }} />
+                  </Card>
+              </Col>
+          </Row>
+      </div>
   );
 }

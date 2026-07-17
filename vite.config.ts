@@ -15,7 +15,8 @@ export default defineConfig(({ command, mode }) => {
     },
   },
   build: {
-    outDir: `${mode}`,
+    // outDir: `${mode}`,
+    cssCodeSplit: false,
   },
   server: {
     proxy: {
