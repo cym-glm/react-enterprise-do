@@ -27,52 +27,27 @@ export default function Login() {
   };
 
   return (
-    <div className="login-page">
-      <Card className="login-card">
-        <div className="login-header">
-          <h2>企业管理系统</h2>
-          <p>欢迎登录</p>
-        </div>
-        <Form
-          name="login"
-          initialValues={{ username: '', password: '' }}
-          onFinish={onFinish}
-          autoComplete="off"
-        >
-          <Form.Item
-            name="username"
-            rules={[{ required: true, message: '请输入用户名' }]}
-          >
-            <Input
-              prefix={<UserOutlined />}
-              placeholder="用户名"
-              size="large"
-            />
-          </Form.Item>
-          <Form.Item
-            name="password"
-            rules={[{ required: true, message: '请输入密码' }]}
-          >
-            <Input.Password
-              prefix={<LockOutlined />}
-              placeholder="密码"
-              size="large"
-            />
-          </Form.Item>
-          <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              size="large"
-              block
-              icon={<LockOutlined />}
-            >
-              登录
-            </Button>
-          </Form.Item>
-        </Form>
-        <p className="login-tip">提示：任意用户名和密码均可登录</p>
-      </Card>
-    </div>
+      <div className="login-page">
+          <Card className="login-card">
+              <div className="login-header">
+                  <h2>企业管理系统</h2>
+                  <p>欢迎登录</p>
+              </div>
+              <Form name="login" initialValues={{ username: '', password: '' }} onFinish={onFinish} autoComplete="off">
+                  <Form.Item name="username" rules={[{ required: true, message: '请输入用户名' }]}>
+                      <Input prefix={<UserOutlined />} placeholder="用户名" size="large" />
+                  </Form.Item>
+                  <Form.Item name="password" rules={[{ required: true, message: '请输入密码' }]}>
+                      <Input.Password prefix={<LockOutlined />} placeholder="密码" size="large" />
+                  </Form.Item>
+                  <Form.Item>
+                      <Button type="primary" htmlType="submit" size="large" block icon={<LockOutlined />}>
+                          登录
+                      </Button>
+                  </Form.Item>
+              </Form>
+              <p className="login-tip">提示：任意用户名和密码均可登录</p>
+          </Card>
+      </div>
   );
 }

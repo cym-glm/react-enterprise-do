@@ -3,12 +3,16 @@ import { createBrowserRouter, Navigate, type RouteObject } from 'react-router-do
 import LayoutComponent from '@/layouts/Layout';
 import useAuthStore from '@/store';
 
-const Login = lazy(() => import('@/pages/Login'));
-const Dashboard = lazy(() => import('@/pages/Dashboard'));
-const User = lazy(() => import('@/pages/User'));
-const Order = lazy(() => import('@/pages/Order'));
-const Topic = lazy(() => import('@/pages/Topic'));
-
+// const Login = lazy(() => import('@/pages/Login'));
+// const Dashboard = lazy(() => import('@/pages/Dashboard'));
+// const User = lazy(() => import('@/pages/User'));
+// const Order = lazy(() => import('@/pages/Order'));
+// const Topic = lazy(() => import('@/pages/Topic'));
+import Login from '@/pages/Login';
+import Dashboard from '@/pages/Dashboard';
+import User from '@/pages/User';
+import Order from '@/pages/Order';
+import Topic from '@/pages/Topic';
 // const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
 //   const { isLoggedIn } = useAuthStore();
 //   if (!isLoggedIn) {
@@ -18,50 +22,50 @@ const Topic = lazy(() => import('@/pages/Topic'));
 // };
 
 const routes: RouteObject[] = [
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/',
-    element: (
-        <LayoutComponent>
-          <Dashboard />
-        </LayoutComponent>
-    ),
-  },
-  {
-    path: '/dashboard',
-    element: (
-        <LayoutComponent>
-          <Dashboard />
-        </LayoutComponent>
-    ),
-  },
-  {
-    path: '/user',
-    element: (
-        <LayoutComponent>
-          <User />
-        </LayoutComponent>
-    ),
-  },
-  {
-    path: '/order',
-    element: (
-        <LayoutComponent>
-          <Order />
-        </LayoutComponent>
-    ),
-  },
-  {
-    path: '/topic',
-    element: (
-        <LayoutComponent>
-          <Topic />
-        </LayoutComponent>
-    ),
-  },
+    {
+        path: '/login',
+        element: <Login />,
+    },
+    {
+        path: '/',
+        element: (
+            <LayoutComponent>
+                <Dashboard />
+            </LayoutComponent>
+        ),
+    },
+    {
+        path: '/dashboard',
+        element: (
+            <LayoutComponent>
+                <Dashboard />
+            </LayoutComponent>
+        ),
+    },
+    {
+        path: '/user',
+        element: (
+            <LayoutComponent>
+                <User />
+            </LayoutComponent>
+        ),
+    },
+    {
+        path: '/order',
+        element: (
+            <LayoutComponent>
+                <Order />
+            </LayoutComponent>
+        ),
+    },
+    {
+        path: '/topic',
+        element: (
+            <LayoutComponent>
+                <Topic />
+            </LayoutComponent>
+        ),
+    },
 ];
 
 const router = createBrowserRouter(routes);

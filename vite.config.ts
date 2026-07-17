@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { visualizer } from 'rollup-plugin-visualizer'
 import path from 'path'
 
 // const modeIndex = process.argv.indexOf('--mode')
@@ -8,14 +9,21 @@ import path from 'path'
 export default defineConfig(({ command, mode }) => {
   console.log('---',command)
   return {
-    plugins: [react()],
+    plugins: [react(), visualizer({
+      open: false,              // 构建完自动打开报告
+      gzipSize: true,          // 显示 gzip 后的大小
+      brotliSize: true,        // 显示 brotli 后的大小
+      filename: 'dist/stats.html',
+      template: 'treemap',     // treemap（默认）| sunburst | network | list
+    })],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
   },
   build: {
-    outDir: `${mode}`,
+    // outDir: `${mode}`,
+    assetsInlineLimit: 1024 * 1024 * 2,  // 官方默认是 4096
   },
   server: {
     proxy: {
