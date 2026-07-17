@@ -17,6 +17,13 @@ export default defineConfig(({ command, mode }) => {
   build: {
     // outDir: `${mode}`,
     cssCodeSplit: false,
+    rollupOptions: {
+      output: {
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
+      }
+    }
   },
   server: {
     proxy: {
