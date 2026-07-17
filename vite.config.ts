@@ -19,9 +19,46 @@ export default defineConfig(({ command, mode }) => {
     cssCodeSplit: false,
     rollupOptions: {
       output: {
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]',
+        chunkFileNames: 'js/[name]-[hash].js',
+        entryFileNames: 'js/[name]-[hash].js',
+        assetFileNames(assetInfo) {
+          const fileName = assetInfo.names[0] || ''
+          const ext = fileName.split('.').pop()?.toLowerCase()
+          if (ext === 'css') {
+            return 'assets/css/[name]-[hash][extname]'
+          }
+          if (
+            ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'avif', 'ico'].includes(
+              ext || '',
+            )
+          ) {
+            return 'assets/img/[name]-[hash][extname]'
+          }
+          return 'assets/[name]-[hash][extname]'
+        },
+        // manualChunks(id) {
+        //   if (!id.includes('node_modules')) return
+        //   if (
+        //     id.includes('/react/') ||
+        //     id.includes('/react-dom/') ||
+        //     id.includes('/react-router-dom/')
+        //   ) {
+        //     return 'react'
+        //   }
+        //   if (id.includes('/antd/')) {
+        //     return 'antd'
+        //   }
+        //   if (id.includes('/echarts/')) {
+        //     return 'echarts'
+        //   }
+        // }
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'antd-vendor': ['antd'],
+          'utils': ['axios', 'zustand'], // 'dayjs', 'lodash-es'
+          'echarts': ['echarts'],
+          'user-order': ['src/pages/User.tsx', 'src/pages/Order.tsx'],
+        }
       }
     }
   },
