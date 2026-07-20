@@ -64,6 +64,8 @@ const routes: RouteObject[] = [
   },
 ];
 
-const router = createBrowserRouter(routes);
+const router = createBrowserRouter(routes, {
+    basename: '/react-enterprise-do',
+});
 
 export default router;
