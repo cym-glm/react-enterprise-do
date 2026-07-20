@@ -50,7 +50,7 @@ jobs:
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./prod
+          path: ./dist
 
   deploy:
     runs-on: ubuntu-latest
