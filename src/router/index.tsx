@@ -65,7 +65,7 @@ const routes: RouteObject[] = [
 ];
 
 const router = createBrowserRouter(routes, {
-    basename: '/react-enterprise-do',
+    basename: import.meta.env.VITE_BASE_BASENAME,
 });
 
 export default router;
