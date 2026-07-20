@@ -10,6 +10,7 @@ import { routeResourcePlugin } from './src/plugins/routeResourcePlugin.ts';
 export default defineConfig(({ command, mode }) => {
   console.log('---',command)
   return {
+    base: './',
     plugins: [react({
       babel: {
         plugins: command === '2build' ? [
