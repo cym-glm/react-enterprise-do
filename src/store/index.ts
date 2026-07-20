@@ -11,7 +11,7 @@ interface AuthStore {
   setUser: (user: UserInfo | null) => void;
 }
 
-const useAuthStore = create<AuthStore>()(
+const authStore = create<AuthStore>()(
   persist(
     (set) => ({
       user: null,
@@ -27,7 +27,9 @@ const useAuthStore = create<AuthStore>()(
   )
 );
 
-export const getToken = () => useAuthStore.getState().token;
-export const logout = () => useAuthStore.getState().logout();
+export const useAuthStore = () => authStore();
+
+export const getToken = () => authStore.getState().token;
+export const logout = () => authStore.getState().logout();
 
 export default useAuthStore;
