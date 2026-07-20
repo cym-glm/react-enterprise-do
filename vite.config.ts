@@ -2,22 +2,24 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import { visualizer } from 'rollup-plugin-visualizer'
-
-// const modeIndex = process.argv.indexOf('--mode')
-// const mode = modeIndex !== -1 ? process.argv[modeIndex + 1] : 'dist'
-// console.log('---',mode)
+import { compression } from 'vite-plugin-compression2'
 export default defineConfig(({ command, mode }) => {
   console.log('---',command)
   return {
     plugins: [react({
       babel: {
-        plugins: command === 'build' ? [
+        plugins: command === 'bui3ld' ? [
           ['babel-plugin-import', { libraryName: 'antd', libraryDirectory: 'es', style: false }],
         ] : [],
       },
     }),
+      // gzip + brotli
+      // compression({
+      //   algorithms: ['gzip', 'brotliCompress'],
+      //   threshold: 1024 * 500,
+      // }),
     visualizer({
-      open: true,
+      open: false,
       filename: 'dist/stats.html',
       gzipSize: true,
       brotliSize: true
@@ -30,6 +32,7 @@ export default defineConfig(({ command, mode }) => {
   },
   build: {
     // outDir: `${mode}`,
+    // chunkSizeWarningLimit: 1024 * 1024 * 1,
     cssCodeSplit: false,
     rollupOptions: {
       output: {
@@ -87,23 +90,3 @@ export default defineConfig(({ command, mode }) => {
   },
   }
 });
-// export default defineConfig({
-//   plugins: [react()],
-//   resolve: {
-//     alias: {
-//       '@': path.resolve(__dirname, './src'),
-//     },
-//   },
-//   build: {
-//     outDir: `${mode}`,
-//   },
-//   server: {
-//     proxy: {
-//       '/api': {
-//         target: 'https://cnodejs.org/api/v1',
-//         changeOrigin: true,
-//         rewrite: (path) => path.replace(/^\/api/, ''),
-//       },
-//     },
-//   },
-// })

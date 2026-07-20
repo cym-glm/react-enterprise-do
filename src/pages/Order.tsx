@@ -71,7 +71,7 @@ const mockOrders: Order[] = [
 ];
 
 export default function Order() {
-    console.log('---', debounce());
+    // console.log('---', debounce());
     const [orders, setOrders] = useState<Order[]>(mockOrders);
 
     const handleDelete = (id: string) => {
