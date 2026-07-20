@@ -3,7 +3,6 @@ import { SearchOutlined, DeleteOutlined, EditOutlined, PlusOutlined } from '@ant
 import { useState, useEffect, useRef } from 'react';
 import { getTopics, createTopic } from '@/api/topic';
 import type { Topic } from '@/types';
-
 export default function Topic() {
   const [topics, setTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(false);

@@ -3,16 +3,28 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { compression } from 'vite-plugin-compression2'
+import preload from 'vite-plugin-preload'
+import prefetchChunk from 'vite-plugin-prefetch-chunk'
+
+import { routeResourcePlugin } from './src/plugins/routeResourcePlugin.ts';
 export default defineConfig(({ command, mode }) => {
   console.log('---',command)
   return {
     plugins: [react({
       babel: {
-        plugins: command === 'bui3ld' ? [
+        plugins: command === '2build' ? [
           ['babel-plugin-import', { libraryName: 'antd', libraryDirectory: 'es', style: false }],
         ] : [],
       },
     }),
+      // prefetchChunk(),
+      // routeResourcePlugin('modulepreload'),
+      // routeResourcePlugin('prefetch'),
+      // preload({
+      //   mode: 'preload',
+      //   includeJs: true,
+      //   includeCss: true,
+      // }),
       // gzip + brotli
       // compression({
       //   algorithms: ['gzip', 'brotliCompress'],
@@ -73,8 +85,8 @@ export default defineConfig(({ command, mode }) => {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'antd-vendor': ['antd'],
           'utils': ['axios', 'zustand'],
-          'echarts': ['echarts'],
-          'user-order': ['src/pages/User.tsx', 'src/pages/Order.tsx'],
+          'echarts': ['echarts']
+          // 'user-order': ['src/pages/User.tsx', 'src/pages/Order.tsx'],
         }
       }
     }
