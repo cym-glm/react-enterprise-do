@@ -42,7 +42,7 @@ jobs:
         run: pnpm build
 
       - name: Create 404 fallback
-        run: cp prod/index.html prod/404.html
+        run: cp dist/index.html dist/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
